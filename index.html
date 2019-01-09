@@ -1,1 +1,83 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
+  <title>As the Crow Orbits --- Home</title>
+
+<link rel="stylesheet" href="CrowStyle.css">
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js">
+MathJax.Hub.Config({
+ extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js"],
+ jax: ["input/TeX", "output/HTML-CSS"],
+ tex2jax: {
+     inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+     displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+ },
+ "HTML-CSS": { availableFonts: ["TeX"] }
+});
+</script>
+</head>
+<body>
+<div class="header">
+    <img src="FeynmanDiagramIcon.png" style="float:left; margin:10px 20px 0px 0px;height:80px;">
+
+    <div style="float:left">
+      <h1 style="float:left; margin:5px 0px 0px 0px;padding:0px 0px 0px 0px">David Yaylali</h1>
+      <h2 style="margin:0px 0px 5px 0px;padding:0px 0px 0px 0px">Physics and Engineering</h2>
+      <h4 style="margin:0px 0px 0px 0px;padding:0px 0px 0px 0px">The University of Arizona</h4>
+    </div>
+
+    <img src="HohmannIcon.png" style="margin:10px 20px 0 20px;width:80px;height:80px;">
+</div>
+
+<div class="row">
+
+  <div class="col-2 menu">
+    <ul>
+      <li  id="curLink">Home</li>
+      <a href="education.html"><li>Education</li></a>
+      <a href="publications.html"><li>Publications</li></a>
+      <a href="talks.html"><li>Talks</li>
+      <!-- <a href="notes.html"><li>Running Notes</li> -->
+      <a href="misc.html"><li>Misc</li></a>
+      <a href="computation.html"><li>Computation</li></a>
+    </ul>
+  </div>
+
+  <div class="col-10">
+    <img src="DavidYaylaliHeadshot-Small2.jpg" style="float:right; margin:10px 20px 0 0;width:200px">
+    <p>Hello and welcome to my online CV, and portal of shameless self-promotion!  I am a recent aerospace M.S. graduate (now looking for work!) from the University of Arizona.  I also hold a Ph.D. in astroparticle physics from the University of Hawaii.</p>
+
+    <h4>Research Interests and Activity</h4>
+    <p>  My aerospace interests and research lie mainly within the broad field of <b>guidance, navigation, and control (GNC)</b>.  Specifically, I am currently researching the dynamics and control of multi-vehicle systems and spacecraft.  Central topics include
+    <ul>
+      <li>Spacecraft relative-orbit control</li>
+      <li>Cooperative and consensus control for multivehicle systems</li>
+      <li>Attitude dynamics and control for spacecraft</li>
+      <li>Monte-Carlo and deterministic techniques for integration and optimization.</li>
+    </ul>
+    Many of the controllers I am studying utilize fractional derivative and integral feedback terms to shape the system trajectory.  The fractional calculus generalizes standard integer-order calculus in the sense that operations such as differentiation and integration can be taken to a non-integer order, <i>e.g.</i>,
+    $$D^{1}f(x) ~ \rightarrow ~ D^{1/2} f(x)$$
+    <!-- </p>
+    $$D^{1}f(x) ~ \rightarrow ~ D^{1/2} f(x)$$
+    <p> -->
+    Thus the order of these fractional operators becomes a new tunable parameter which can be used to more freely shape the trajectory of a controlled system.
+    </p>
+
+
+    <p>My Ph.D. and postdoc research focused on the phenomenology of dark matter, which has been indirectly observed and determined to make up ~80% of the matter content of our universe.  My published research centers around methods to directly detect dark matter at particle accelerators, high-sensitivity underground detectors, and space-based telescopes.  </p>
+
+    <p>Published research (in both physics and aerospace) can be found <a href="papers.html">here.</a></p>
+
+
+
+  </div>
+
+
+</div>
+
+
+</body>
+</html>
