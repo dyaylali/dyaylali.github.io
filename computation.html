@@ -25,7 +25,7 @@ MathJax.Hub.Config({
 </script>
 </head>
 <body>
-<div class="header">
+<div class="header" id="topofpage">
     <img src="FeynmanDiagramIcon.png" style="float:left; margin:10px 20px 0px 0px;height:80px;">
 
     <div style="float:left">
@@ -46,15 +46,41 @@ MathJax.Hub.Config({
       <a href="publications.html"><li>Publications</li></a>
       <a href="talks.html"><li>Talks</li></a>
       <!-- <a href="notes.html"><li>Running Notes</li></a> -->
-      <a href="misc.html"><li>Misc</li></a>
       <a href="computation.html"><li id="curLink">Computation</li></a>
+      <a href="misc.html"><li>Misc</li></a>
     </ul>
   </div>
 
   <div class="col-8 col-s-8">
     <p>Included here are a selection of neat computational tools and analyses.  I'll continue to upload new material as I'm able.</p>
 
-    <h2>Consensus Control for Spacecraft Formation Flying</h2>
+    <div>
+      <ul style="list-style-type:disc;">
+        <li style="margin-bottom:5px"><a href="#porkchop">Generating Porkchop Plots</a></li>
+
+        <li style="margin-bottom:5px"><a href="#LISAformation">Consensus Control for Spacecraft Formation Flying</a></li>
+
+        <li style="margin-bottom:5px"><a href="#THandleSO3Tumbling">Simulating Rigid Body Motion</a></li>
+      </ul>
+    </div>
+
+    <h2 id="porkchop">Generating Porkchop Plots!</h2>
+    <p>When planning an interplanetary mission, say, from Earth to Mars, it's important to plan your route wisely.  It's also important to plan your departure time.  At any given time, Earth and Mars will be in different places along their elliptical orbits, and move along their orbits at different speeds.  As a result, the needed fuel and time-of-flight for the trip vary drastically depending on the this departure time. This information is efficiently encoded in the <i>porkchop plot,</i>
+    <img class="displayed" src="Images/PorkchopPorkchop.jpg" alt="" style="width:90%; max-width:600px; min-width:200px">
+    I guess they're called this because they can <i>vaguely</i> resemble a porkchop... I think whoever named it just forgot their lunch that day and was hungry. </p>
+
+    <p>The idea behind porkchop plots is simple: along the <i>x</i>-axis is the departure time (usually in units of days or months for interplanetary missions), and along the <i>y</i>-axis is arrival time at the destination planet.  Upon these axes, one can plot a variety of things, including time-of-flight for the journey and the amount of fuel needed.  The latter quantity is typically plotted indirectly; it is often convenient to separately plot the characteristic energy ${\rm C}_3$, which describes the needed energy to initiate the trip, and $v_{\infty}^{-}$, which describes the arrival speed with respect to the target planet.  This is convenient since the trip is typically initiated by large launch systems which in many cases expend their fuel completely by the time the spacecraft leaves the influence of the Earth.  The quantity $v_{\infty}^{-}$ then characterizes the amount of <i>on-board</i> fuel needed (<i>i.e.</i>, the internal fuel within the spacecraft) in order to "stop" at the destination planet.</p>
+
+    <p>Ideally, it would be nice to reduce all three quantities (TOF, ${\rm C}_3$, and $v_{\infty}^{-}$) simultaneously.  Since fuel spent and time-of-flight are typically inversely proportional, however, there is some trade-off that is invariably necessary.  Porkchop plots are key to understanding these necessary trade-offs in order to plan the mission. </p>
+
+    <p> <a href="Code/PorkchopPlots_MATLAB.zip">Attached here</a> is a simple MATLAB code used to generate porkchop plots for trajectories between any two planets within the Solar System.  The date for the trip is a free parameter that can be set.  For the default choices within the code (Earth-to-Mars, 2005), this code outputs...
+    <img class="displayed" src="Images/PorkchopPlot.jpg" alt="" style="width:90%; margin-top:15px; margin-bottom:15px; max-width:600px; min-width:200px">
+    Note that to run this code, the MATLAB Aerospace Toolbox along with the JPL <a href="https://www.mathworks.com/matlabcentral/fileexchange/46671-ephemeris-data-for-aerospace-toolbox" target="_blank">Ephemerides support package</a> is needed.  The code works by solving <a href="https://en.wikipedia.org/wiki/Lambert%27s_problem" target="_blank">Lambert's problem</a> at each grid-point in the porkchop plot.  The specific method of solution to Lambert's problem used in this code is outlined in Section 5.3 of <i>Orbital Mechanics for Engineering Students</i>, by H. Curtis (2005).
+    </p>
+    <p style="margin-top:15px; margin-bottom:45px"><a href="#topofpage">Back to Top</a></p>
+
+
+    <h2 id="LISAformation">Consensus Control for Spacecraft Formation Flying</h2>
     <p>In <i>cooperative consensus control</i>, vehicles share information with one another, and this shared information can be used to build control laws which bring the system as a whole to some consensus in position and velocity.   </p>
     <IMG class="displayed" src="Images/CommunicationTopology.png" alt="LISA Formation Animation" style="width:230px">
     <p>For instance, for the above system, SC1 receives information from both SC2 and SC3, while SC2 and SC3 only receive information from SC1.  For this communication topology, a simple <i>consensus control law</i> takes the form
@@ -86,8 +112,10 @@ MathJax.Hub.Config({
     <p>
     Again, for a more detailed description of this maneuver, see &sect; 3.3 of my <a href="Yaylali_Thesis_UAFormat.pdf" target="_blank">masters thesis</a>.  The MATLAB code used to simulate this system (and generate the above animation) can be <a href="Code/LISAConsensusFormationControl.zip">downloaded here</a>.
     </p>
+    <p style="margin-top:15px; margin-bottom:45px"><a href="#topofpage">Back to Top</a></p>
 
-    <h2>Simulating Rigid Body Motion</h2>
+
+    <h2  id="THandleSO3Tumbling">Simulating Rigid Body Motion</h2>
     <h3>The spinning "T-handle" in space!</h3>
     <p>The natural motion of a rotating body can be completely surprising to most people (including myself!) when first viewed in the proper setting.  For instance, when the "falling" motion of a body is removed from the picture (as it is in orbit, on the ISS), a rotating body such as this "T-handle" behaves very strangely: </p>
     <div align="center">
@@ -107,7 +135,7 @@ MathJax.Hub.Config({
     \]
     Using this code, one finds a very nice replication of the strange behavior seen in the above video (the black, red, and blue rods represent the (orthogonal) principle axis corresponding to the T-handle):
     <img class="displayed" src="RigidBodyTumblingExample.gif" alt="animated T-handle"> </p>
-
+    <p style="margin-top:15px; margin-bottom:45px"><a href="#topofpage">Back to Top</a></p>
     <!-- <h2>Rectilinear + Rigid Body Motion... in SE(3)</h2>
     <p>The above example...</p> -->
 
