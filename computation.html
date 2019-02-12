@@ -65,7 +65,7 @@
 
     <h2 id="porkchop">Generating Porkchop Plots!</h2>
     <p>When planning an interplanetary mission, say, from Earth to Mars, it's important to plan your route wisely.  It's also important to plan your departure time.  At any given time, Earth and Mars will be in different places along their elliptical orbits, and move along their orbits at different speeds.  As a result, the needed fuel and time-of-flight for the trip vary drastically depending on the this departure time. This information is efficiently encoded in the <i>porkchop plot</i>:
-    <img class="displayed" src="Images/PorkchopPorkchop.jpg" alt="" style="width:90%; max-width:600px; min-width:400px">
+    <img class="displayed" src="Images/PorkchopPorkchop.jpg" alt="" style="width:90%; max-width:700px; min-width:400px">
     I guess they're called this because they can <i>vaguely</i> resemble a porkchop... I think whoever named it just forgot their lunch that day and was hungry. To me it looks more like an ahi tuna plot:
     <img class="displayed" src="Images/Ahi-Tuna.jpg" alt="" style="width:90%; max-width:200px; min-width:150px">
     </p>
@@ -76,7 +76,7 @@
 
     <p> <a href="Code/PorkchopPlots_MATLAB.zip">Attached here</a> is a simple MATLAB code used to generate porkchop plots for trajectories between any two planets within the Solar System.  The date for the trip is a free parameter that can be set.  For the default choices within the code (Earth-to-Mars, 2005), this code outputs...
     <img class="displayed" src="Images/PorkchopPlot.jpg" alt="" style="width:90%; margin-top:15px; margin-bottom:15px; max-width:600px; min-width:200px">
-    Note that to run this code, the MATLAB Aerospace Toolbox along with the JPL <a href="https://www.mathworks.com/matlabcentral/fileexchange/46671-ephemeris-data-for-aerospace-toolbox" target="_blank">Ephemerides support package</a> is needed.  The code works by solving <a href="https://en.wikipedia.org/wiki/Lambert%27s_problem" target="_blank">Lambert's problem</a> at each grid-point in the porkchop plot.  The specific method of solution to Lambert's problem used in this code is outlined in Section 5.3 of <i>Orbital Mechanics for Engineering Students</i>, by H. Curtis (2005).
+    This compares well to the plot shown on the <a href="https://en.wikipedia.org/wiki/Porkchop_plot" target="_blank">Porkchop Plot Wikipedia page</a>.  Note that to run this code, the MATLAB Aerospace Toolbox along with the JPL <a href="https://www.mathworks.com/matlabcentral/fileexchange/46671-ephemeris-data-for-aerospace-toolbox" target="_blank">Ephemerides support package</a> is needed.  The code works by solving <a href="https://en.wikipedia.org/wiki/Lambert%27s_problem" target="_blank">Lambert's problem</a> at each grid-point in the porkchop plot.  The specific method of solution to Lambert's problem used in this code is outlined in Section 5.3 of <i>Orbital Mechanics for Engineering Students</i>, by H. Curtis (2005).
     </p>
     <p style="margin-top:15px; margin-bottom:45px"><a href="#topofpage">Back to Top</a></p>
 
