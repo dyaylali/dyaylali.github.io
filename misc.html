@@ -1,28 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="author" content="David Yaylali">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>As the Crow Orbits --- Miscellaneous</title>
   <link rel="stylesheet" type="text/css" href="CrowStyle_Dynamic.css">
+  <style>
+    .mySlides {
+    display:none;
+    }
+    .active-slide {
+    display:block;
+    }
+  </style>
 
-
-  <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js">
-  MathJax.Hub.Config({
-   extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js"],
-   jax: ["input/TeX", "output/HTML-CSS"],
-   tex2jax: {
-       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-       displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-   },
-   "HTML-CSS": { availableFonts: ["TeX"] }
-  });
-  </script>
 </head>
 
 <body>
-<div class="header">
+  <div class="header">
     <img src="FeynmanDiagramIcon.png" style="float:left; margin:10px 20px 0px 0px;height:80px;">
 
     <div style="float:left">
@@ -32,36 +24,159 @@
     </div>
 
     <img src="HohmannIcon.png" style="margin:10px 20px 0 20px;width:80px;height:80px;">
-</div>
-
-<div class="row">
-
-  <div class="col-2 col-s-4 menu">
-    <ul>
-      <a href="index.html"><li>Home</li></a>
-      <a href="education.html"><li>Education</li></a>
-      <a href="publications.html"><li>Publications</li></a>
-      <a href="talks.html"><li>Talks</li></a>
-      <!-- <a href="notes.html"><li>Running Notes</li></a> -->
-      <a href="computation.html"><li>Computation</li></a>
-      <a href="misc.html"><li id="curLink">Misc</li></a>
-    </ul>
   </div>
+
+
+  <div class="row">
+
+    <div class="col-2 col-s-4 menu">
+      <ul>
+        <a href="index.html"><li>Home</li></a>
+        <a href="education.html"><li>Education</li></a>
+        <a href="publications.html"><li>Publications</li></a>
+        <a href="talks.html"><li>Talks</li></a>
+        <!-- <a href="notes.html"><li>Running Notes</li></a> -->
+        <a href="computation.html"><li>Computation</li></a>
+        <a href="misc.html"><li id="curLink">Misc</li></a>
+      </ul>
+    </div>
 
   <div class="col-10 col-s-8">
-<p>Check back soon!</p>
-<img src="Davey16_Cropped.jpg" style="float:left;width:150px">
+
+  <h3>Road trip photos</h3>
+  <div class="slideshow-container">
+    <div class="mySlides fade">
+      <img class="landscape" src="Images/RoadTrip/rt1.jpg">
+      <div class="captext">On the road, DC to AZ</div>
+    </div>
+
+    <div class="mySlides fade">
+        <img class="landscape" src="Images/RoadTrip/rt2.jpg">
+    </div>
+
+    <div class="mySlides fade">
+      <!-- <div class="numbertext">1 / 4</div> -->
+      <img class="landscape" src="Images/RoadTrip/rt4.jpg">
+      <div class="captext">Near Raton, New Mexico</div>
+    </div>
+
+    <div class="mySlides fade">
+      <!-- <div class="numbertext">1 / 4</div> -->
+      <img class="landscape" src="Images/RoadTrip/rt7.jpg">
+      <div class="captext">Through the Salt Flats, UT</div>
+    </div>
+
+    <div class="mySlides fade">
+      <!-- <div class="numbertext">1 / 4</div> -->
+      <img class="portrait" src="Images/RoadTrip/rt8.jpg">
+      <div class="captext">Oregon Coast</div>
+    </div>
+
+    <div class="mySlides fade">
+      <!-- <div class="numbertext">1 / 4</div> -->
+      <img class="landscape" src="Images/RoadTrip/rt14.jpg">
+      <div class="captext">Short Sands Beach, OR</div>
+    </div>
+
+    <div class="mySlides fade">
+      <!-- <div class="numbertext">1 / 4</div> -->
+      <img class="landscape" src="Images/RoadTrip/rt9.jpg">
+      <!-- <div class="captext">Caption Text</div> -->
+    </div>
+
+    <div class="mySlides fade">
+      <!-- <div class="numbertext">1 / 4</div> -->
+      <img class="landscape" src="Images/RoadTrip/rt10.jpg">
+      <!-- <div class="captext">Caption Text</div> -->
+    </div>
+
+    <div class="mySlides fade">
+      <div class="numbertext">1 / 4</div>
+      <img class="landscape" src="Images/RoadTrip/rt11.jpg">
+    </div>
+
+    <div class="mySlides fade">
+      <!-- <div class="numbertext">1 / 4</div> -->
+      <img class="landscape" src="Images/RoadTrip/rt12.jpg">
+      <div class="captext">Somewhere in Nevada</div>
+    </div>
+
+    <div class="mySlides fade">
+      <!-- <div class="numbertext">1 / 4</div> -->
+      <img class="landscape" src="Images/RoadTrip/rt13.jpg">
+      <div class="captext">Somewhere in Nevada</div>
+    </div>
+
+    <a class="prev">&#10094;</a>
+    <a class="next">&#10095;</a>
+
+    <div style="text-align:center">
+      <span class="dot" ></span>
+      <span class="dot" ></span>
+      <span class="dot" ></span>
+      <span class="dot" ></span>
+      <span class="dot" ></span>
+      <span class="dot" ></span>
+      <span class="dot" ></span>
+      <span class="dot" ></span>
+      <span class="dot" ></span>
+      <span class="dot" ></span>
+      <span class="dot" ></span>
+    </div>
+  </div>
+  <br>
 
 
+
+
+
+
+
+
+  <!-- <div class="slideshow-container">
+    <div class="mySlides fade">
+      <div class="numbertext">1 / 3</div>
+      <img src="http://www.w3schools.com/howto/img_mountains_wide.jpg" style="width:100%">
+      <div class="captext">Caption Text</div>
+    </div>
+
+    <div class="mySlides fade">
+      <div class="numbertext">2 / 3</div>
+      <img src="http://www.w3schools.com/howto/img_fjords_wide.jpg" style="width:100%">
+      <div class="captext">Caption Two</div>
+    </div>
+
+    <div class="mySlides fade">
+      <div class="numbertext">3 / 3</div>
+      <img src="http://www.w3schools.com/howto/img_nature_wide.jpg" style="width:100%">
+      <div class="captext">Caption Three</div>
+    </div>
+
+    <a class="prev" >&#10094;</a>
+    <a class="next">&#10095;</a>
+  <div style="text-align:center">
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+  </div> -->
+
+
+  <br>
+  <h3>Juno Crow</h3>
+  <p>This is my dog.  Her name is Juno Crow.  She likes to swim.</p>
+  <div align="center">
+    <style>video.labnol, img.labnol {width: 60% !important; min-width:400px; height: auto !important;}</style> <video class='labnol' width='750' height='425' controls poster='https://instagram.fsjc1-3.fna.fbcdn.net/vp/0a9690af9ba1475d425c8a1672eec7f2/5C64DC26/t51.2885-15/e15/15056647_1228150333918932_8390848564179238912_n.jpg?_nc_ht=instagram.fsjc1-3.fna.fbcdn.net'><source src='https://instagram.fsjc1-3.fna.fbcdn.net/vp/989b99a90ebcd239b751ad24422910cf/5C65516E/t50.2886-16/15131787_100608807092991_3229451098876018688_n.mp4?_nc_ht=instagram.fsjc1-3.fna.fbcdn.net' type='video/mp4'></video>
+  </div>
+  <p>This is the aftermath of the above video.</p>
+  <div align="center">
+    <style>video.labnol, img.labnol {width: 60% !important; height: auto !important;}</style> <video class='labnol' width='750' height='422' controls poster='https://instagram.fsjc1-3.fna.fbcdn.net/vp/e4457609ff07be8e22b7b6c393e4551c/5C651E5E/t51.2885-15/e15/15046946_802576119883571_3591315055775318016_n.jpg?_nc_ht=instagram.fsjc1-3.fna.fbcdn.net'><source src='https://instagram.fsjc1-3.fna.fbcdn.net/vp/76598fd43b356f05b8008800731f11d8/5C650A97/t50.2886-16/15095899_1131628916905541_2986046506118676480_n.mp4?_nc_ht=instagram.fsjc1-3.fna.fbcdn.net' type='video/mp4'></video>
+    <!-- <p>Credit: @<a href='https://instagram.com/hannahrjones'>Hannah 🌵👊</a></p> -->
   </div>
 
-
+</div>
 </div>
 
-
-<div class="footer">
-
-</div>
-
+<script src="slideshow.js"></script>
 </body>
 </html>
