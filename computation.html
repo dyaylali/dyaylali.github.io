@@ -65,9 +65,11 @@ MathJax.Hub.Config({
     </div>
 
     <h2 id="porkchop">Generating Porkchop Plots!</h2>
-    <p>When planning an interplanetary mission, say, from Earth to Mars, it's important to plan your route wisely.  It's also important to plan your departure time.  At any given time, Earth and Mars will be in different places along their elliptical orbits, and move along their orbits at different speeds.  As a result, the needed fuel and time-of-flight for the trip vary drastically depending on the this departure time. This information is efficiently encoded in the <i>porkchop plot,</i>
-    <img class="displayed" src="Images/PorkchopPorkchop.jpg" alt="" style="width:90%; max-width:600px; min-width:200px">
-    I guess they're called this because they can <i>vaguely</i> resemble a porkchop... I think whoever named it just forgot their lunch that day and was hungry. </p>
+    <p>When planning an interplanetary mission, say, from Earth to Mars, it's important to plan your route wisely.  It's also important to plan your departure time.  At any given time, Earth and Mars will be in different places along their elliptical orbits, and move along their orbits at different speeds.  As a result, the needed fuel and time-of-flight for the trip vary drastically depending on the this departure time. This information is efficiently encoded in the <i>porkchop plot</i>:
+    <img class="displayed" src="Images/PorkchopPorkchop.jpg" alt="" style="width:90%; max-width:600px; min-width:400px">
+    I guess they're called this because they can <i>vaguely</i> resemble a porkchop... I think whoever named it just forgot their lunch that day and was hungry. To me it looks more like an ahi tuna plot:
+    <img class="displayed" src="Images/Ahi-Tuna.jpg" alt="" style="width:90%; max-width:200px; min-width:150px">
+    </p>
 
     <p>The idea behind porkchop plots is simple: along the <i>x</i>-axis is the departure time (usually in units of days or months for interplanetary missions), and along the <i>y</i>-axis is arrival time at the destination planet.  Upon these axes, one can plot a variety of things, including time-of-flight for the journey and the amount of fuel needed.  The latter quantity is typically plotted indirectly; it is often convenient to separately plot the characteristic energy ${\rm C}_3$, which describes the needed energy to initiate the trip, and $v_{\infty}^{-}$, which describes the arrival speed with respect to the target planet.  This is convenient since the trip is typically initiated by large launch systems which in many cases expend their fuel completely (and are jettisoned) by the time the spacecraft leaves the influence of the Earth.  The quantity $v_{\infty}^{-}$ then characterizes the amount of <i>on-board</i> fuel needed (<i>i.e.</i>, the internal fuel within the spacecraft) in order to "stop" at the destination planet.</p>
 
