@@ -19,7 +19,7 @@
 </head>
 
 <body>
-  <div class="header">
+  <div class="header" id="topofpage">
       <img src="HohmannIcon.png" style="float:left; margin:10px 20px 0px 0px;height:80px;">
 
       <div style="float:left">
@@ -55,87 +55,131 @@
           <li style="margin-bottom:5px"><a href="#LISAformation">Consensus Control for Spacecraft Formation Flying</a></li>
 
           <li style="margin-bottom:5px"><a href="#THandleSO3Tumbling">Simulating Rigid Body Motion</a></li>
+
+          <li style="margin-bottom:5px"><a href="#PySwath">Particle Decay-Chain Kinematics in Python</a></li>
         </ul>
       </div>
 
-      <h2 id="porkchop">Generating Porkchop Plots!</h2>
-      <p>When planning an interplanetary mission, say, from Earth to Mars, it's important to plan your route wisely.  It's also important to plan your departure time.  At any given time, Earth and Mars will be in different places along their elliptical orbits, and move along their orbits at different speeds.  As a result, the needed fuel and time-of-flight for the trip vary drastically depending on the this departure time. This information is efficiently encoded in the <i>porkchop plot</i>:
-      <img class="displayed" src="Images/PorkchopPorkchop.jpg" alt="" style="width:90%; max-width:700px; min-width:400px">
-      I guess they're called this because they can <i>vaguely</i> resemble a porkchop... To me it looks more like an <i>ahi tuna</i> plot:
-      <img class="displayed" src="Images/Ahi-Tuna.jpg" alt="" style="width:90%; max-width:200px; min-width:150px">
-      </p>
+      <div id="porkchop">
+        <h2>Generating Porkchop Plots!</h2>
+        <p>When planning an interplanetary mission, say, from Earth to Mars, it's important to plan your route wisely.  It's also important to plan your departure time.  At any given time, Earth and Mars will be in different places along their elliptical orbits, and move along their orbits at different speeds.  As a result, the needed fuel and time-of-flight for the trip vary drastically depending on the this departure time. This information is efficiently encoded in the <i>porkchop plot</i>:
+        <img class="displayed" src="Images/PorkchopPorkchop.jpg" alt="" style="width:90%; max-width:700px; min-width:400px">
+        I guess they're called this because they can <i>vaguely</i> resemble a porkchop... To me it looks more like an <i>ahi tuna</i> plot:
+        <img class="displayed" src="Images/Ahi-Tuna.jpg" alt="" style="width:90%; max-width:200px; min-width:150px">
+        </p>
 
-      <p>The idea behind porkchop plots is simple: along the <i>x</i>-axis is the departure time (usually in units of days or months for interplanetary missions), and along the <i>y</i>-axis is arrival time at the destination planet.  Upon these axes, one can plot a variety of things, including time-of-flight for the journey and the amount of fuel needed.  The latter quantity is typically plotted indirectly; it is often convenient to separately plot the characteristic energy \({\rm C}_3\), which describes the needed energy to initiate the trip, and \(v_{\infty}^{-}\), which describes the arrival speed with respect to the target planet.  This is convenient since the trip is typically initiated by large launch systems which in many cases expend their fuel completely (and are jettisoned) by the time the spacecraft leaves the influence of the Earth.  The quantity \(v_{\infty}^{-}\) then characterizes the amount of <i>on-board</i> fuel needed (<i>i.e.</i>, the internal fuel within the spacecraft) in order to "stop" at the destination planet.</p>
+        <p>The idea behind porkchop plots is simple: along the <i>x</i>-axis is the departure time (usually in units of days or months for interplanetary missions), and along the <i>y</i>-axis is arrival time at the destination planet.  Upon these axes, one can plot a variety of things, including time-of-flight for the journey and the amount of fuel needed.  The latter quantity is typically plotted indirectly; it is often convenient to separately plot the characteristic energy \({\rm C}_3\), which describes the needed energy to initiate the trip, and \(v_{\infty}^{-}\), which describes the arrival speed with respect to the target planet.  This is convenient since the trip is typically initiated by large launch systems which in many cases expend their fuel completely (and are jettisoned) by the time the spacecraft leaves the influence of the Earth.  The quantity \(v_{\infty}^{-}\) then characterizes the amount of <i>on-board</i> fuel needed (<i>i.e.</i>, the internal fuel within the spacecraft) in order to "stop" at the destination planet.</p>
 
-      <p>Ideally, it would be nice to reduce all three quantities (TOF, \({\rm C}_3\), and \(v_{\infty}^{-}\)) simultaneously.  Since fuel spent and time-of-flight are typically inversely proportional, however, there is some trade-off that is invariably necessary.  Porkchop plots are key to understanding these necessary trade-offs in order to plan the mission. </p>
+        <p>Ideally, it would be nice to reduce all three quantities (TOF, \({\rm C}_3\), and \(v_{\infty}^{-}\)) simultaneously.  Since fuel spent and time-of-flight are typically inversely proportional, however, there is some trade-off that is invariably necessary.  Porkchop plots are key to understanding these necessary trade-offs in order to plan the mission. </p>
 
-      <p> <a href="Code/PorkchopPlots_MATLAB.zip">Attached here</a> is a simple MATLAB code used to generate porkchop plots for trajectories between any two planets within the Solar System.  The date for the trip is a free parameter that can be set.  For the default choices within the code (Earth-to-Mars, 2005), this code outputs...
-      <img class="displayed" src="Images/PorkchopPlot.jpg" alt="" style="width:90%; margin-top:15px; margin-bottom:15px; max-width:600px; min-width:200px">
-      This compares well to the plot shown on the <a href="https://en.wikipedia.org/wiki/Porkchop_plot" target="_blank">Porkchop Plot Wikipedia page</a>.  Note that to run this code, the MATLAB Aerospace Toolbox along with the JPL <a href="https://www.mathworks.com/matlabcentral/fileexchange/46671-ephemeris-data-for-aerospace-toolbox" target="_blank">Ephemerides support package</a> is needed.  The code works by solving <a href="https://en.wikipedia.org/wiki/Lambert%27s_problem" target="_blank">Lambert's problem</a> at each grid-point in the porkchop plot.  The specific method of solution to Lambert's problem used in this code is outlined in Section 5.3 of <i>Orbital Mechanics for Engineering Students</i>, by H. Curtis (2005).
-      </p>
-      <p style="margin-top:15px; margin-bottom:45px"><a href="#topofpage">Back to Top</a></p>
-
-
-      <h2 id="LISAformation">Consensus Control for Spacecraft Formation Flying</h2>
-      <p>In <i>cooperative consensus control</i>, vehicles share information with one another, and this shared information can be used to build control laws which bring the system as a whole to some consensus in position and velocity.   </p>
-      <IMG class="displayed" src="Images/CommunicationTopology.png" alt="LISA Formation Animation" style="width:230px">
-      <p>For instance, for the above system, SC1 receives information from both SC2 and SC3, while SC2 and SC3 only receive information from SC1.  For this communication topology, a simple <i>consensus control law</i> takes the form
-      \begin{align}
-      u_1 &= a_{12}(x_2-x_1) + a_{13}(x_3-x_1) \\
-      u_2 &= a_{21}(x_1-x_2)  \\
-      u_3 &= a_{31}(x_1-x_3)
-      \end{align}
-      where \(x_i\) is the state of spacecraft \(i\).  The \(a_{ij}\) coefficients capture the communication flow in the system, and in this case only the non-zero \(a_{ij}\) factors are shown.  Since SC2 and SC3 do not communicate, SC2 does not know the position/velocity of SC3 and vise versa... that's why there's no term in the control law proportional to \((x_2-x_3)\).</p>
-      <p>
-      This control law therefore <i>feeds back</i> the position and velocity differences to the dynamics of the system (when this information is available), so that as the system evolves these position/velocity differences are driven to zero.  That is, this control protocol drives the system to <i>consensus</i>.
-      </p>
-      <p>Under control laws of the above type, the <i>closed-loop</i> dynamics can be written in a very concise way:
-        $$\dot {\pmb x} = (I_N \otimes A - L \otimes BK)\pmb{x}.$$
-      Here, \(A\) captures the natural dynamics of each vehicle, \(B\) captures Newton's second law (that forces cause accelerations), \(K\) captures the relative weights of the position and velocity feedback terms (taken to be 1-to-1 in the \(u_i\) control laws written above), and \(\pmb{x}\) is a vector containing the collection of all vehicle states.  The graph Laplacian matrix \(L\) captures the communication topology.
-      </p>
-      <p>Consensus control laws can be used to build vehicle formations.  As discussed in my <a href="Files/Yaylali_Thesis_UAFormat.pdf" target="_blank">masters thesis</a> (see &sect; 3.3), one way to do this is to define <i>virtual</i> leaders, and build a leader-follower consensus control law for each vehicle.  If the virtual leaders follow some prescribed trajectory, the physical vehicles will then be drawn to these desired trajectories, regardless of initial conditions.</p>
-      <p>As a neat example, consider the <a href="https://en.wikipedia.org/wiki/Laser_Interferometer_Space_Antenna" target="_blank">Laser Interferometer Space Antenna</a> (LISA), a proposed space-based gravitational wave observatory.
-          <IMG class="displayed" src="Images/LISAdiagram.png" alt="LISA Formation Diagram" style="width:350px">
-      The idea for this mission is to place three spacecraft in a triangular formation, the center of which orbits the Sun.  The spacecraft are therefore in a circular relative orbit about each other... that is, if you remain at the center of the formation, you will see the three spacecraft move along a circle, separated by 120&deg;.
-      </p>
-      <p>Imagine how such a formation is initially built.  One would assume that all three SC are launched by a single launch vehicle to the proper Earth-trailing heliocentric orbit:
-          <IMG class="displayed" img src="Images/LISA_LaunchDiagram.png" alt="LISA Formation Animation"  style="width:500px">
-      Taking the position of the initially bundled spacecraft as the center of relative-orbit coordinate system, one can now utilize three virtual leader-follower consensus control laws to properly position each spacecraft along a circular relative orbit.  The formation of the LISA constellation under this control protocol is illustrated below:
-      <img class="displayed" src="Images/LISAConsensusFormationAnimation.gif" alt="LISA Formation Animation">
-      We can also plot the LVLH position vector magnitudes and interspacecraft distances as a function of time.  The former should approach a constant (indicating circular relative orbits); the latter should approach a constant as well, indicating that the formation becomes a constant equilateral triangle.
-      <img class="displayed" src="Images/LISAManeuverGeometry.jpg" alt="LISA Maneuver Geometry" style="width:90%; min-width:550px">
-      </p>
-      <p>
-      Again, for a more detailed description of this maneuver, see &sect; 3.3 of my <a href="Files/Yaylali_Thesis_UAFormat.pdf" target="_blank">masters thesis</a>.  The MATLAB code used to simulate this system (and generate the above animation) can be <a href="Code/LISAConsensusFormationControl.zip">downloaded here</a>.
-      </p>
-      <p style="margin-top:15px; margin-bottom:45px"><a href="#topofpage">Back to Top</a></p>
-
-
-      <h2  id="THandleSO3Tumbling">Simulating Rigid Body Motion</h2>
-      <h3>The spinning "T-handle" in space!</h3>
-      <p>The natural motion of a rotating body can be completely surprising to most people (including myself!) when first viewed in the proper setting.  For instance, when the "falling" motion of a body is removed from the picture (as it is in orbit, on the ISS), a rotating body such as this "T-handle" behaves very strangely: </p>
-      <div align="center">
-        <iframe width="448" height="252" src="https://www.youtube.com/embed/1n-HMSCDYtM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p> <b><a href="Code/PorkchopPlots_MATLAB.zip">Attached here</a></b> is a simple MATLAB code used to generate porkchop plots for trajectories between any two planets within the Solar System.  The date for the trip is a free parameter that can be set.  For the default choices within the code (Earth-to-Mars, 2005), this code outputs...
+        <img class="displayed" src="Images/PorkchopPlot.jpg" alt="" style="width:90%; margin-top:15px; margin-bottom:15px; max-width:600px; min-width:200px">
+        This compares well to the plot shown on the <a href="https://en.wikipedia.org/wiki/Porkchop_plot" target="_blank">Porkchop Plot Wikipedia page</a>.  Note that to run this code, the MATLAB Aerospace Toolbox along with the JPL <a href="https://www.mathworks.com/matlabcentral/fileexchange/46671-ephemeris-data-for-aerospace-toolbox" target="_blank">Ephemerides support package</a> is needed.  The code works by solving <a href="https://en.wikipedia.org/wiki/Lambert%27s_problem" target="_blank">Lambert's problem</a> at each grid-point in the porkchop plot.  The specific method of solution to Lambert's problem used in this code is outlined in Section 5.3 of <i>Orbital Mechanics for Engineering Students</i>, by H. Curtis (2005).
+        </p>
+        <p style="margin-top:15px; margin-bottom:45px"><a href="#topofpage">Back to Top</a></p>
       </div>
-      <p>This motion of course arises from the coupling between the orthoginal angular velocity components in Euler's equations (with zero external torque),
-        \begin{align}
-        I_1 \dot{\omega}_1 + (I_3-I_2) \omega_2 \omega_3 &= 0 \\
-        I_2 \dot{\omega}_2 + (I_1-I_3) \omega_1 \omega_3 &= 0  \\
-        I_3 \dot{\omega}_3 + (I_2-I_1) \omega_1 \omega_2 &= 0,
-        \end{align}
-      where \(I_i\) are the principle moments of inertia of the rotating body and \(\omega_i\) are the components of angular velocity (in the rotating frame fixed to the body) with respect to the principle axes.  For a very nice exposition of this material, written by my undergraduate research adviser Nick Wheeler,  <a href="https://www.reed.edu/physics/faculty/wheeler/documents/Classical%20Mechanics/Class%20Notes/Chapter%202.pdf" target="_blank">see here.</a>  Long story short, a rigid body such as a book or this T-handle can stably tumble about its "shortest" and "longest" axes, but not about its intermediate axis.</p>
 
-      <p>Simulating this rotating "T-handle" numerically is a very illuminating exercise, as it involves conceptualization of and transformation between rotating reference frames, dynamics of rigid bodies, and numerical integration.  <a href="Code/SimulateTumblingSO3.zip">This cute little code </a> performs this within MATLAB in the formalism of the Lie group \({\rm SO}(3)\), the rotation group.  The state of the rigid body at any time is represented by the group members \(R\), which are simply the rotation matrices representing its current orientation. In terms of \({\rm SO}(3)\), Euler's equations (without torque) can be expressed as
-      \[
-      J \dot{\boldsymbol{\omega}} = - \boldsymbol{\omega}^{\times}J \boldsymbol{\omega}.
-      \]
-      Using this code, one finds a very nice replication of the strange behavior seen in the above video (the black, red, and blue rods represent the (orthogonal) principle axis corresponding to the T-handle):
-      <img class="displayed" src="Images/RigidBodyTumblingExample.gif" alt="animated T-handle"> </p>
-      <p style="margin-top:15px; margin-bottom:45px"><a href="#topofpage">Back to Top</a></p>
+      <div id="LISAformation">
+        <h2>Consensus Control for Spacecraft Formation Flying</h2>
+        <p>In <i>cooperative consensus control</i>, vehicles share information with one another, and this shared information can be used to build control laws which bring the system as a whole to some consensus in position and velocity.   </p>
+        <IMG class="displayed" src="Images/CommunicationTopology.png" alt="LISA Formation Animation" style="width:230px">
+        <p>For instance, for the above system, SC1 receives information from both SC2 and SC3, while SC2 and SC3 only receive information from SC1.  For this communication topology, a simple <i>consensus control law</i> takes the form
+        \begin{align}
+        u_1 &= a_{12}(x_2-x_1) + a_{13}(x_3-x_1) \\
+        u_2 &= a_{21}(x_1-x_2)  \\
+        u_3 &= a_{31}(x_1-x_3)
+        \end{align}
+        where \(x_i\) is the state of spacecraft \(i\).  The \(a_{ij}\) coefficients capture the communication flow in the system, and in this case only the non-zero \(a_{ij}\) factors are shown.  Since SC2 and SC3 do not communicate, SC2 does not know the position/velocity of SC3 and vise versa... that's why there's no term in the control law proportional to \((x_2-x_3)\).</p>
+        <p>
+        This control law therefore <i>feeds back</i> the position and velocity differences to the dynamics of the system (when this information is available), so that as the system evolves these position/velocity differences are driven to zero.  That is, this control protocol drives the system to <i>consensus</i>.
+        </p>
+        <p>Under control laws of the above type, the <i>closed-loop</i> dynamics can be written in a very concise way:
+          $$\dot {\pmb x} = (I_N \otimes A - L \otimes BK)\pmb{x}.$$
+        Here, \(A\) captures the natural dynamics of each vehicle, \(B\) captures Newton's second law (that forces cause accelerations), \(K\) captures the relative weights of the position and velocity feedback terms (taken to be 1-to-1 in the \(u_i\) control laws written above), and \(\pmb{x}\) is a vector containing the collection of all vehicle states.  The graph Laplacian matrix \(L\) captures the communication topology.
+        </p>
+        <p>Consensus control laws can be used to build vehicle formations.  As discussed in my <a href="Files/Yaylali_Thesis_UAFormat.pdf" target="_blank">masters thesis</a> (see &sect; 3.3), one way to do this is to define <i>virtual</i> leaders, and build a leader-follower consensus control law for each vehicle.  If the virtual leaders follow some prescribed trajectory, the physical vehicles will then be drawn to these desired trajectories, regardless of initial conditions.</p>
+        <p>As a neat example, consider the <a href="https://en.wikipedia.org/wiki/Laser_Interferometer_Space_Antenna" target="_blank">Laser Interferometer Space Antenna</a> (LISA), a proposed space-based gravitational wave observatory.
+            <IMG class="displayed" src="Images/LISAdiagram.png" alt="LISA Formation Diagram" style="width:350px">
+        The idea for this mission is to place three spacecraft in a triangular formation, the center of which orbits the Sun.  The spacecraft are therefore in a circular relative orbit about each other... that is, if you remain at the center of the formation, you will see the three spacecraft move along a circle, separated by 120&deg;.
+        </p>
+        <p>Imagine how such a formation is initially built.  One would assume that all three SC are launched by a single launch vehicle to the proper Earth-trailing heliocentric orbit:
+            <IMG class="displayed" img src="Images/LISA_LaunchDiagram.png" alt="LISA Formation Animation"  style="width:500px">
+        Taking the position of the initially bundled spacecraft as the center of relative-orbit coordinate system, one can now utilize three virtual leader-follower consensus control laws to properly position each spacecraft along a circular relative orbit.  The formation of the LISA constellation under this control protocol is illustrated below:
+        <img class="displayed" src="Images/LISAConsensusFormationAnimation.gif" alt="LISA Formation Animation">
+        We can also plot the LVLH position vector magnitudes and interspacecraft distances as a function of time.  The former should approach a constant (indicating circular relative orbits); the latter should approach a constant as well, indicating that the formation becomes a constant equilateral triangle.
+        <img class="displayed" src="Images/LISAManeuverGeometry.jpg" alt="LISA Maneuver Geometry" style="width:90%; min-width:550px">
+        </p>
+        <p>
+        Again, for a more detailed description of this maneuver, see &sect; 3.3 of my <a href="Files/Yaylali_Thesis_UAFormat.pdf" target="_blank">masters thesis</a>.  The MATLAB code used to simulate this system (and generate the above animation) can be <b><a href="Code/LISAConsensusFormationControl.zip">downloaded here</a></b>.
+        </p>
+        <p style="margin-top:15px; margin-bottom:45px"><a href="#topofpage">Back to Top</a></p>
+      </div>
+
+      <div id="THandleSO3Tumbling">
+        <h2 style="margin-bottom:-15px">Simulating Rigid Body Motion</h2>
+        <h3><i>The spinning "T-handle" in space!</i></h3>
+        <p>The natural motion of a rotating body can be completely surprising to most people (including myself!) when first viewed in the proper setting.  For instance, when the "falling" motion of a body is removed from the picture (as it is in orbit, on the ISS), a rotating body such as this "T-handle" behaves very strangely: </p>
+        <div align="center">
+          <iframe width="448" height="252" src="https://www.youtube.com/embed/1n-HMSCDYtM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p>This motion of course arises from the coupling between the orthoginal angular velocity components in Euler's equations (with zero external torque),
+          \begin{align}
+          I_1 \dot{\omega}_1 + (I_3-I_2) \omega_2 \omega_3 &= 0 \\
+          I_2 \dot{\omega}_2 + (I_1-I_3) \omega_1 \omega_3 &= 0  \\
+          I_3 \dot{\omega}_3 + (I_2-I_1) \omega_1 \omega_2 &= 0,
+          \end{align}
+        where \(I_i\) are the principle moments of inertia of the rotating body and \(\omega_i\) are the components of angular velocity (in the rotating frame fixed to the body) with respect to the principle axes.  For a very nice exposition of this material, written by my undergraduate research adviser Nick Wheeler,  <a href="https://www.reed.edu/physics/faculty/wheeler/documents/Classical%20Mechanics/Class%20Notes/Chapter%202.pdf" target="_blank">see here.</a>  Long story short, a rigid body such as a book or this T-handle can stably tumble about its "shortest" and "longest" axes, but not about its intermediate axis.</p>
+
+        <p>Simulating this rotating "T-handle" numerically is a very illuminating exercise, as it involves conceptualization of and transformation between rotating reference frames, dynamics of rigid bodies, and numerical integration.  <b><a href="Code/SimulateTumblingSO3.zip">This cute little code</a></b> performs this within MATLAB in the formalism of the Lie group \({\rm SO}(3)\), the rotation group.  The state of the rigid body at any time is represented by the group members \(R\), which are simply the rotation matrices representing its current orientation. In terms of \({\rm SO}(3)\), Euler's equations (without torque) can be expressed as
+        \[
+        J \dot{\boldsymbol{\omega}} = - \boldsymbol{\omega}^{\times}J \boldsymbol{\omega}.
+        \]
+        Using this code, one finds a very nice replication of the strange behavior seen in the above video (the black, red, and blue rods represent the (orthogonal) principle axis corresponding to the T-handle):
+        <img class="displayed" src="Images/RigidBodyTumblingExample.gif" alt="animated T-handle"> </p>
+        <p style="margin-top:15px; margin-bottom:45px"><a href="#topofpage">Back to Top</a></p>
+      </div>
+
       <!-- <h2>Rectilinear + Rigid Body Motion... in SE(3)</h2>
       <p>The above example...</p> -->
 
+      <div id="PySwath">
+        <h2 style="margin-bottom:-15px">Decay-Chain Kinematics in Python</h2>
+        <h3> <i>...or, building a Monte Carlo particle accelerator simulator</i> </h3>
 
+        <p>Imagine that, in addition to the <a href="https://en.wikipedia.org/wiki/Standard_Model" target="_blank">Standard Model</a>, there exists a new particle $\phi$, along with a whole <i>family</i> (or, <i>tower</i>) of new particles $\chi_i$, $i = 0,1,\ldots,n$.  To be a more technically precise, we assume the $\phi$ to be a scalar particle charged under SU(3) color, and the $\chi_i$ are assumed to be fermions (spin-1/2).  We will assume that the indices of the $\chi_i$ states are ordered by mass (so that $m_{\chi_0}< m_{\chi_1}< \cdots $), and also that $m_{\chi_n} < m_{\phi}$.  We introduce a new fundamental interaction between these states and the Standard Model (SM) quarks, which is given by
+        <img class="displayed" src="Images/DMInteraction.png" alt="" style="width:90%; max-width:500px; min-width:150px">
+        where at left we show the Feynman diagram and at right we show the interaction Lagrangian.  The details of this Lagrangian are unimportant for our current purposes; it allows us to compute, in the formalism of quantum field theory (QFT), the probability of interaction between the different particles $q$, $\phi$, and $\chi_i$.  This interaction therefore connects the "normal" matter we are familiar with to the exotic new particles $\phi$ and $\chi_i$.
+        </p>
+        <p><b>What is the motivation for this "Beyond the Standard Model" (BSM) physics?</b>  Well, due to the fact that $m_{\chi_0} < m_{\phi}$, the $\chi_0$ particle is completely stable; conservation of energy, along with the interaction structure, prevents the $\chi_0$ from decaying any further.  Moreover, if the couplings $c_{iq}$ are small enough and/or the mass of the $\phi$ is large enough, then interactions between $\chi_{i}$ and SM particles (protons, neutrons, etc) will be extremely weak.  <b>The $\chi_0$ particle can therefore be identified as <a href="https://en.wikipedia.org/wiki/Dark_matter" target="_blank"><i>dark matter</i></a></b>, which has been indirectly shown (through many separate and independent phenomena) to make up 80% of the matter content of the Universe.</p>
+
+        <p>How would we look for experimental signatures of this model in the lab?  Since $\phi$ carries color charge, a pair of $\phi$s can be created by colliding two protons together at a high enough energy, such that $E> (2m_{\phi}) c^2$.  We can therefore attempt to look for signatures of this model at particle accelerators like the Large Hadron Collider.  A particular signal which would arise is illustrated below:
+        <img class="displayed" src="Images/DDMColliderSignal.png" alt="" style="width:90%; max-width:600px; min-width:300px">
+        In words, colliding protons can produce a particle-antiparticle pair of $\phi$ particles.  Each of these $\phi$ particles will then decay, in steps, down to the lightest stable state ($\bar{\chi}_a$ and $\chi_b$ in the figure), and in doing so will emit a number of quarks (which are visible in colliders, forming what are referred to as "jets").
+        </p>
+
+
+        <p>Our goal is to simulate events given by the above topology; in essence, this will allow the detector teams at the LHC to search for this "new physics" signal.  Of course, since the individual interactions making up the decay chain obey quantum mechanics, the exact decay path taken by each $\phi/\phi^{\dagger}$ particle is <b>not deterministic</b>. For instance, if there are 3 particles ($\chi_0$, $\chi_1$, and $\chi_2$), there is some probability of the decay chain $\phi \rightarrow \chi_2 \rightarrow \chi_1 \rightarrow \chi_0$, some probability for $\phi \rightarrow \chi_2 \rightarrow \chi_0$, and so on.  We therefore need to look at <i>many</i> events, and use the jet number or jet momenta <i>distribution</i> to search for evidence of our model.  Due to this quantum mechanical (probabilistic) behavior, we require a Monte Carlo simulation.</p>
+
+        <p>In other words, we require a Monte Carlo "particle accelerator simulator".  Many such simulators exist (such as <a href="https://cp3.irmp.ucl.ac.be/projects/madgraph/" target="_blank">MadGraph</a>) and are commonly used in HEP research.  These tools, however, are ill-suited for the process illustrated above, since the combinatorics of such long decay chains quickly become far too computationally expensive.  To deal with these types of events, where large "swaths" of jets are produced from a large number of decays, I created <b>PySwath</b>.</p>
+
+        <p>PySwath can be <b><a href="Code/PySwath.zip">downloaded here</a></b>.  This Python program takes as input the model parameters and initial momenta of the $\phi \phi^{\dagger}$ pairs, then generates the decay chain based on the analytical probability distributions which can be computed from the interaction Lagrangian $\mathcal{L}_{\rm int}$. The program outputs a file which contains the identity and four-momenta of each particle in the decay chain, for all events generated during the simulation run.  For illustrative purposes, this program also outputs histrograms (as .pdf files) showing the jet number distribution and the transverse momenta ($p_T$) distribution of the highest-$p_T$ jet:
+        <img class="displayed" src="Images/PySwathGraphs.png" alt="PySwath Graphs" style="width:90%; max-width:800px; min-width:400px">
+        Note that only an even number of jets are created.  The reason for this can be seen from the decay diagram shown above.  At a minimum, both the $\phi$ and $\phi^{\dagger}$ will decay to the lowest state, each contributing a single quark-jet to give two jets.  Any additional decay process within either leg will then give <i>an additional</i> two jets, <i>e.g.,</i> $\phi^{\dagger}\rightarrow q \chi_1 \rightarrow q  q \bar{q} \chi_0$.  The total number of jets from the complete process must therefore be even.
+        </p>
+
+        <p>Some additional notes:
+          <ul>
+            <li>This code is written in Python 2.7.  It is packaged such that, when extracted, one can simply do: <br>  &nbsp &nbsp <span style="font-family:'Lucida Console', monospace">$ python PySwath.py</span> <br>
+            in terminal.  With default choices, there are 90 $\chi_i$ states ($\chi_0, \chi_1, \ldots, \chi_{89}$) and 1000 events are generated.  Event generation takes about 15 seconds on my laptop.</li>
+            <li>A far more detailed description of the model illustrated above, along with a parameter space analysis based on cosmological constraints and collider searches, will be published shortly (and I will link to the paper here when this paper is completed).  </li>
+            <li>The initial production of the $\phi \phi^{\dagger}$ pair must be computed in MadGraph.  I have included production data for a specific case (where $m_{\phi}=1$ TeV) so that the code can be run out-of-the-box.  I've decided not to include production in this code since MadGraph has no trouble computing a simple 2-to-2 scattering process such as $p+p \rightarrow \phi + \phi^{\dagger}$.</li>
+            <li>This code does not take into account certain quantum mechanical effects (such as interference between different processes).  For our purposes these effects are essentially negligible.</li>
+            <li>The output file storing the particle identities and four-momenta is formatted according to the <a href="https://en.wikipedia.org/wiki/Les_Houches_Accords" target="_blank"><i>Les Houches Accords</i></a>, so that it can be passed to other industry-standard programs for <a href="https://en.wikipedia.org/wiki/Hadronization" target="_blank">hadronization</a> and detector simulation.</li>
+            <li>This code is actually a skeleton of the actual code we are using for our analysis, and just for illustrative purposes.  The full code is structured slightly differently and contains far more event analysis. </li>
+          </ul>
+        </p>
+        <p style="margin-top:15px; margin-bottom:45px"><a href="#topofpage">Back to Top</a></p>
+      </div>
 
 
     </div>
@@ -145,7 +189,7 @@
   <div class="footer">
     <p id="UPDATER" style="text-align:right;"> <i>Last updated: todaysDate</i> </p>
   </div>
-  
+
   <script src="updater.js"></script>
 </body>
 </html>
