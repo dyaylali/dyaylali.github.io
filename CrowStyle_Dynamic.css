@@ -134,6 +134,13 @@ img.landscape {
 }
 
 /* Slideshow container */
+.section-container {
+  margin-top: 10px;
+  margin-bottom: 40px;
+  /* clear: both; */
+}
+
+/* Slideshow container */
 .slideshow-container {
   width:100%;
   max-width: 800px;
