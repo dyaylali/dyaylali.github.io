@@ -46,10 +46,12 @@
     </div>
 
     <div class="col-8 col-s-8">
-      <p>Included here is a selection of neat computational tools and analyses.  I'll continue to upload new material as I'm able.</p>
+      <p>Included here is a selection of neat computational tools and analyses, the main purpose of which is to show a broad selection of topics I have experience with.  I'll continue to upload new material as I'm able.  I've presented this material in a very pedagogical manner so that it can be understood by non-experts; this choice is based on an intent to someday, perhaps, reformat this as a aerospace-themed "blog" in the future.</p>
 
       <div>
         <ul style="list-style-type:disc;">
+          <li style="margin-bottom:5px"><a href="#launch">Dynamics of a Launch to Orbit</a></li>
+
           <li style="margin-bottom:5px"><a href="#porkchop">Generating Porkchop Plots</a></li>
 
           <li style="margin-bottom:5px"><a href="#LISAformation">Consensus Control for Spacecraft Formation Flying</a></li>
@@ -58,6 +60,36 @@
 
           <li style="margin-bottom:5px"><a href="#PySwath">Particle Decay-Chain Kinematics in Python</a></li>
         </ul>
+      </div>
+
+      <br>
+      <br>
+
+      <div id="launch">
+        <h2>Dynamics of a Launch to Orbit</h2>
+        <p>To launch a spacecraft into orbit using chemical rockets, the primary goal is to raise the <i>horizontal</i> speed of the vehicle such that the vehicle, under the influence of gravity, falls <i>around</i> the Earth.  This was nicely conceptualized by Newton using the <i>cannonball thought experiment</i>:
+        <img class="displayed" src="Images/RocketLaunch/NewtonCannonball.gif" alt="Newton's Cannonball" style="width:90%; max-width:200px; min-width:150px; margin-top:10px;margin-bottom:10px;">
+        So, despite the fact that rockets are typically launched vertically, it is crucial that the rocket at some point "pitches over" so that it can provide thrust parallel to the Earth's surface, and pick up this necessary "horizontal" speed.
+        </p>
+        <p>It so happens that this "pitching over" is naturally accomplished by the gravitational dynamics of spherical bodies: as long as there is some small initial pitch angle, the rocket will naturally increase its pitch as it accelerates away from the surface.  This is known as a <a href="https://en.wikipedia.org/wiki/Gravity_turn" target="_blank"><i>gravity turn</i></a> maneuver.  (Note that the dynamics here are completely intuitive: If a ball is thrown in the air in some non-vertical direction, the velocity vector of the ball will "pitch-over" as it follows the arc of its ballistic trajectory.)  Typically, the initial pitch angle will be initiated by some onboard controller either early on, when the vehicle velocity is low, or later in the launch once the rocket is high enough to substantially reduce atmospheric drag; otherwise, the change in direction caused by the pitch-over will induce immense aerodynamics stresses on the vehicle, which could cause catastrophic failure.</p>
+
+        <p>The main point, however, is that to achieve a certain orbit (say, a circular orbit at 300km altitude), the launch vehicle must achieve a high-enough "horizontal" velocity (in this case, 7.726 km/s).  This involves a certain amount of thrust, and also a certain pitch-over maneuver.  As we now illustrate, the actual trajectory is <b>extremely</b> sensitive to these choices.</p>
+
+        <p> <a href="Code/RocketLaunch_MATLAB.zip"><b>This simple MATLAB program</b></a> serves to simulate the launch dynamics of a single-stage rocket which pitches over from vertical to some initial prescribed pitch-over angle, at some prescribed altitude.  For simplicity, this code approximates the Earth as non-rotating so that the dynamics can be captured in two dimensions; that is, whatever direction we choose to pitch over determines the plane of the Keplerian conic section.  I've given a more detailed description of the dynamics involved (including some details on the full 3D picture and how to incorporate the rotation into the simulation) in <a href="Files/LaunchDynamics.pdf" target="_blank"><b>this set of notes</b></a>.  To illustrate the results of running this code, we consider a rocket with wet-to-dry mass ratio $n=15$, thrust of $9.33\times 10^5~{\rm N}$, specific impulse $I_{\rm SP}=390~{\rm s}$, and some further assumptions on aerodynamic parameters of the launch vehicle.
+        </p>
+        <p>We first choose a specific pitch-over angle, $\gamma_{\rm po}=89.92^\circ$, and vary the altitude at which this pitch-over occurs.  The altitude and speed of the resulting trajectories are shown below.
+        <img class="displayed" src="Images/RocketLaunch/LaunchTrajPlot.jpg" alt="Launch Trajectories" style="width:90%; max-width:1000px; min-width:150px; margin-top:10px;margin-bottom:10px;">
+        It is clear that varying the pitch-over altitude by <i>meters</i> has a drastic influence on the trajectory.  We see that a pitch-over altitude of $h_{\rm po}=\{130~{\rm m},135~{\rm m}\}$ gives trajectories which essentially escape the atmosphere ($h\gtrsim60~{\rm km}$) with velocities exceeding orbital velocity.  Of course the flight-path angle associated with this velocity is important, since the velocity must be mainly horizontal in order to achieve orbit.  It turns out (not shown) that velocity <i>is</i> indeed mainly horizontal for these two cases; we show the resulting orbit for $h_{\rm po} = 130~{\rm m}$ is illustrated below:
+        <img class="displayed" src="Images/RocketLaunch/LaunchOrbPlot.jpg" alt="Launch Trajectories" style="width:90%; max-width:300px; min-width:150px; margin-top:10px;margin-bottom:10px;">
+        (It turns out that this is not, in fact, a stable orbit, since at perigee the trajectory sinks substantially into the atmosphere and decays due to drag.  So in this case an "orbit-raising" maneuver must be performed near apogee.)
+        </p>
+        <p> We now illustrate what happens when we keep the pitch-over altitude constant ($h_{\rm po} = 125~{\rm m}$) and vary the initial pitch-over angle $\gamma_0$:
+        <img class="displayed" src="Images/RocketLaunch/LaunchTrajPlot_VaryGam.jpg" alt="Launch Trajectories" style="width:90%; max-width:1000px; min-width:150px; margin-top:10px;margin-bottom:10px;">
+        Similarly, we see that even the slightest of differences in this initial angle (<i>i.e.</i>, a quarter of a tenth of a degree) makes a drastic difference in the resulting trajectory.  This sensitivity to the initial conditions suggests <i>non-linearity</i> in the dynamics.  In fact, the dynamics are indeed non-linear, as outlined in the notes I have linked above.  So, although these dynamics are not particularly complicated, optimizing the trajectory is a far more challenging problem.  There are some analytical ways of doing this in special cases, but typically this is done numerically using various software tools.  I hope to include a discussion of launch optimization soon, so stay tuned.
+        </p>
+
+        <p style="margin-top:15px; margin-bottom:45px"><a href="#topofpage">Back to Top</a></p>
+
       </div>
 
       <div id="porkchop">
